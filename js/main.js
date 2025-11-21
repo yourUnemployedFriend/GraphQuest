@@ -4,16 +4,25 @@ const canvas = document.getElementById("graphCanvas");
 const ctx = canvas.getContext("2d");
 
 const width = 600;
-const height = 400;
+const height = 600;
 
-const widthParts = 6;
-const heightParts = 8;
+const widthParts = 20;
+const heightParts = 20;
 
 const xScale = width / (widthParts);
 const yScale = height / (heightParts);
 
 const xCenter = width / 2;
 const yCenter = height / 2;
+
+canvas.height = height;
+canvas.width = width;
+
+let xMachine = [];
+let yMachine = [];
+
+let xUser = [];
+let yUser = [];
 
 // Draw Axis
 
@@ -60,31 +69,33 @@ for (let index = 0; index < heightParts; index++) {
 
 ctx.stroke();
 
-// Draw graph function x^2 from x = -3 to x = 3 
+drawFunction(xUser, yUser);
 
-ctx.translate(xCenter,yCenter); 
-let x = [];
-let y = [];
+function drawFunction(x, y) {
+    ctx.translate(xCenter,yCenter);
 
-let xx;
+    let functionStr = '3x';
 
-for (let i = 0; i < width+1; i++) {
-    x[i] =xCenter-i;
-    xx=x[i]/xScale;
-    y[i] = -yScale*Math.pow(xx,2);
+    for (let i = 0; i < width+1; i++) {
+        
+        const puntoX = (i - xCenter) * xScale;
+        const puntoY = math.evaluate(functionStr, { x: (i - xCenter) }) * -1 * yScale;
+
+        x[i] = puntoX;
+        y[i] = puntoY;
+
+    }
+
+    ctx.strokeStyle = "red";
+    ctx.beginPath();
+    ctx.lineWidth = 2;
+
+    for (i=0;i<=600;i++)
+    {
+        ctx.moveTo(x[i], y[i]);
+        ctx.lineTo(x[i+1], y[i+1]);
+
+    } 
+
+    ctx.stroke()
 }
-
-ctx.strokeStyle = "red";
-ctx.beginPath();
-ctx.lineWidth = 2;
-
-for (i=0;i<=600;i++)
-{
-    ctx.moveTo(x[i],y[i]);
-    ctx.lineTo(x[i+1],y[i+1]);
-
-    console.log(`(${x[i]}, ${y[i]}), (${x[i+1]}, ${y[i+1]})`);
-
-} 
-
-ctx.stroke()

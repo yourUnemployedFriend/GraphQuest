@@ -8,22 +8,21 @@ function drawFunction(functionStr, x, y, color) {
     ctx.setTransform(1, 0, 0, 1, 0, 0); 
     ctx.translate(xCenter, yCenter); 
 
-    for (let i = 0; i <= width; i++) {
+    step = 0.1;
+
+    for (let i = 0; i <= width; i += step) {
         const puntoX = (i - xCenter) * xScale;
         const puntoY = math.evaluate(functionStr, { x: (i - xCenter) }) * -1 * yScale;
 
-        x[i] = puntoX;
-        y[i] = puntoY;
-
-        console.log(puntoX, puntoY);
-
+        x.push(puntoX);
+        y.push(puntoY);
     }
 
     ctx.strokeStyle = color;
     ctx.beginPath();
     ctx.lineWidth = 2;
 
-    for (let i = 0; i < width; i++) {
+    for (let i = 0; i < x.length; i++) {
         ctx.moveTo(x[i], y[i]);
         ctx.lineTo(x[i + 1], y[i + 1]);
     }

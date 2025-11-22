@@ -19,12 +19,14 @@ canvas.width = width;
 let xMachine = [];
 let yMachine = [];
 
+const functionStringMachine = generateRandomMathFunction()
+
 function drawCanvas() {
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, width, height);
     drawAxis();
     drawGrid();
-    drawFunction("sin(x)", xMachine, yMachine, "red");
+    drawFunction(functionStringMachine, xMachine, yMachine, "red");
 }
 
 function comprobarLineas() {
@@ -81,4 +83,46 @@ function drawGrid() {
 
     ctx.stroke();
 
+}
+
+function generateRandomMathFunction() {
+
+    const signs = ["+", "-", "*", "/"];
+
+    let functionString = "x";
+
+    if (getRandomness(0.2)) {
+        
+        let multiplication = generateRandomInt(20, -10);
+
+        if (multiplication != 0) {
+            functionString = multiplication + functionString;
+        } 
+
+    }
+
+    if (getRandomness(0.8)) {
+
+        const power = (getRandomness(0.5)) ? 2 : 4;
+
+        functionString += "^" + power;
+    }
+
+    if (getRandomness(0.7)) {
+        functionString += signs[generateRandomInt(3, 0)] + generateRandomInt(4, 0)
+    }
+
+    console.log(functionString);
+    
+
+    return functionString;
+
+}
+
+function generateRandomInt(max, min) {
+    return Math.round(Math.random() * max + min);
+}
+
+function getRandomness(percentage) {
+    return Math.random() >= percentage;
 }

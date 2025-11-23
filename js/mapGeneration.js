@@ -155,10 +155,7 @@ function generateRandomMathFunction() {
     if (getRandomness(X_OPERATIONS_PROBABILITY)) {
         functionString += signs[generateRandomInt(3, 0)] + generateRandomInt(4, 0)
     }
-
-    console.log(functionString);
     
-
     return functionString;
 
 }

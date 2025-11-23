@@ -123,3 +123,28 @@ h2 {
     filter: var(--iconFilter);
 }
 
+.popup {
+    position: absolute;
+    top: -10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 100px;
+    background-color: #87eb75;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px #87eb75;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: all 0.3s ease-in-out;
+}
+
+.popup h1, .popup h2 {
+    margin: 0px;
+    font-size: 24px;
+}
+
+.popup h2 {
+    font-size: 18px;
+}

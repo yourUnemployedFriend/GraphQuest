@@ -35,4 +35,5 @@ A browser, that's it. It's just javascript.
 ## Future plans
 
 - Add different difficulties
-- Make some css ffs
+- Add points or smth
+- Add a streak one

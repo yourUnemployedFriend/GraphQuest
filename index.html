@@ -5,12 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/font.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.4.0/math.min.js"></script>
 </head>
 <body>
-    <canvas id="graphCanvas" height="400" width="600"></canvas><br>
-    <input type="text" id="userInput"><br>
-    <button id="drawGraph">Draw</button>
+    <div class="wrapper">
+
+        <h1>GraphQuest</h1>
+        <h2>Try to guess the function :)</h2>
+
+        <canvas id="graphCanvas" height="400" width="600"></canvas><br>
+        <p>f(x) = <input type="text" id="userInput"></p>
+        <button id="drawGraph">Draw</button>
+    </div>
     
     <script src="js/userInput.js"></script>
     <script src="js/mapGeneration.js"></script>

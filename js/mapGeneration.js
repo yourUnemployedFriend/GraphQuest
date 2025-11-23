@@ -19,14 +19,24 @@ canvas.width = width;
 let xMachine = [];
 let yMachine = [];
 
-const functionStringMachine = generateRandomMathFunction()
-
 function drawCanvas() {
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.clearRect(0, 0, width, height);
+    clearCanvas();
     drawAxis();
     drawGrid();
-    drawFunction(functionStringMachine, xMachine, yMachine, "red");
+    drawNumbers();
+    drawFunction(xMachine, yMachine, "red");
+}
+
+function getFunctionCoordinates(functionStr, x, y) {
+    step = 0.1;
+
+    for (let i = 0; i <= width; i += step) {
+        const puntoX = (i - xCenter) * xScale;
+        const puntoY = math.evaluate(functionStr, { x: (i - xCenter) }) * -1 * yScale;
+
+        x.push(puntoX);
+        y.push(puntoY);
+    }
 }
 
 function comprobarLineas() {
@@ -39,6 +49,13 @@ function comprobarLineas() {
         }
 
     }
+}
+
+function clearCanvas() {
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, width, height);
+    xUser = [];
+    yUser = [];
 }
 
 function drawAxis() {
@@ -85,6 +102,24 @@ function drawGrid() {
 
 }
 
+function drawNumbers() {
+    ctx.font = "10px Arial";
+    for (let index = -widthParts / 2 + 1; index < widthParts / 2; index++) {
+        if (index != 0) {
+            ctx.fillText(index, xCenter + (index * xScale) - 3, yCenter + 10);
+        }
+    }
+
+    ctx.textAlign = "right";
+
+    for (let index = -heightParts / 2 + 1; index < heightParts / 2; index++) {
+        if (index != 0) {
+            ctx.fillText(index * -1, xCenter - 5, yCenter + (index * yScale))
+        }
+    }
+
+}
+
 function generateRandomMathFunction() {
 
     const signs = ["+", "-", "*", "/"];
@@ -97,13 +132,13 @@ function generateRandomMathFunction() {
 
         if (multiplication != 0) {
             functionString = multiplication + functionString;
-        } 
+        }
 
     }
 
     if (getRandomness(0.8)) {
 
-        const power = (getRandomness(0.5)) ? 2 : 4;
+        const power = generateRandomInt(10, 0);
 
         functionString += "^" + power;
     }

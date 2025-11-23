@@ -1,0 +1,14 @@
+@font-face {
+    font-family: "DuckSans-Bold";
+    src: url("../fonts/DuckSansProduct-Bold.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "DuckSans-Medium";
+    src: url("../fonts/DuckSansProduct-Medium.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "DuckSans-Regular";
+    src: url("../fonts/DuckSansProduct-Regular.woff2") format("woff2");
+}

@@ -1,7 +1,7 @@
 const userInput = document.getElementById("userInput");
 const buttonDrawGraph = document.getElementById("drawGraph");
 const buttonReloadGraph = document.getElementById("reloadGraph");
-const USER_LINE_COLOR = "#2bff72";
+let USER_LINE_COLOR = USER_LINE_COLOR_DARK;
 
 let xUser = [];
 let yUser = [];

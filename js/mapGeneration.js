@@ -22,7 +22,10 @@ let yMachine = [];
 const X_MULTIPLIER_PROBABILITY = 0.2;
 const X_TO_THE_POWER_PROBABILITY = 0.8;
 const X_OPERATIONS_PROBABILITY = 0.7;
-const MACHINE_LINE_COLOR = "#2bc7ff";
+
+let MACHINE_LINE_COLOR = MACHINE_LINE_COLOR_DARK;
+let AXIS_COLOR = AXIS_COLOR_DARK;
+let TEXT_COLOR = TEXT_COLOR_DARK;
 
 function drawCanvas() {
     clearCanvas();
@@ -64,7 +67,7 @@ function clearCanvas() {
 }
 
 function drawAxis() {
-    ctx.strokeStyle = "white";
+    ctx.strokeStyle = AXIS_COLOR;
     ctx.beginPath();
     ctx.lineWidth = 2; 
 
@@ -109,7 +112,7 @@ function drawGrid() {
 
 function drawNumbers() {
     ctx.font = "10px Arial";
-    ctx.fillStyle = "white";
+    ctx.fillStyle = TEXT_COLOR;
     for (let index = -widthParts / 2 + 1; index < widthParts / 2; index++) {
         if (index != 0) {
             ctx.fillText(index, xCenter + (index * xScale) - 3, yCenter + 10);

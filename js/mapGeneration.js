@@ -19,12 +19,17 @@ canvas.width = width;
 let xMachine = [];
 let yMachine = [];
 
+const X_MULTIPLIER_PROBABILITY = 0.2;
+const X_TO_THE_POWER_PROBABILITY = 0.8;
+const X_OPERATIONS_PROBABILITY = 0.7;
+const MACHINE_LINE_COLOR = "#2bc7ff";
+
 function drawCanvas() {
     clearCanvas();
     drawAxis();
     drawGrid();
     drawNumbers();
-    drawFunction(xMachine, yMachine, "red");
+    drawFunction(xMachine, yMachine, MACHINE_LINE_COLOR);
 }
 
 function getFunctionCoordinates(functionStr, x, y) {
@@ -59,7 +64,7 @@ function clearCanvas() {
 }
 
 function drawAxis() {
-    ctx.strokeStyle = "blue";
+    ctx.strokeStyle = "white";
     ctx.beginPath();
     ctx.lineWidth = 2; 
 
@@ -104,6 +109,7 @@ function drawGrid() {
 
 function drawNumbers() {
     ctx.font = "10px Arial";
+    ctx.fillStyle = "white";
     for (let index = -widthParts / 2 + 1; index < widthParts / 2; index++) {
         if (index != 0) {
             ctx.fillText(index, xCenter + (index * xScale) - 3, yCenter + 10);
@@ -126,7 +132,7 @@ function generateRandomMathFunction() {
 
     let functionString = "x";
 
-    if (getRandomness(0.2)) {
+    if (getRandomness(X_MULTIPLIER_PROBABILITY)) {
         
         let multiplication = generateRandomInt(20, -10);
 
@@ -136,14 +142,14 @@ function generateRandomMathFunction() {
 
     }
 
-    if (getRandomness(0.8)) {
+    if (getRandomness(X_TO_THE_POWER_PROBABILITY)) {
 
         const power = generateRandomInt(10, 0);
 
         functionString += "^" + power;
     }
 
-    if (getRandomness(0.7)) {
+    if (getRandomness(X_OPERATIONS_PROBABILITY)) {
         functionString += signs[generateRandomInt(3, 0)] + generateRandomInt(4, 0)
     }
 

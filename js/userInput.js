@@ -1,5 +1,7 @@
 const userInput = document.getElementById("userInput");
 const buttonDrawGraph = document.getElementById("drawGraph");
+const buttonReloadGraph = document.getElementById("reloadGraph");
+const USER_LINE_COLOR = "#2bff72";
 
 let xUser = [];
 let yUser = [];
@@ -24,10 +26,18 @@ function drawFunction(x, y, color) {
 buttonDrawGraph.addEventListener("click", function () {
     drawCanvas();
     getFunctionCoordinates(userInput.value, xUser, yUser);
-    drawFunction(xUser, yUser, "lightblue");
+    drawFunction(xUser, yUser, USER_LINE_COLOR);
     if (comprobarLineas()) {
         console.log("Son iguales, acertaste");
     } else {
         console.log("Fallaste, no son iguales");
     }
 });
+
+buttonReloadGraph.addEventListener("click", function() {
+    xMachine = [];
+    yMachine = [];
+    functionStringMachine = generateRandomMathFunction();
+    getFunctionCoordinates(functionStringMachine, xMachine, yMachine);
+    drawCanvas();
+})

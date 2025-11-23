@@ -11,12 +11,25 @@
 <body>
     <div class="wrapper">
 
+        <div class="changeTheme" id="changeTheme">
+            <img src="svg/sun.svg" alt="">
+        </div>
+
         <h1>GraphQuest</h1>
         <h2>Try to guess the function :)</h2>
 
         <canvas id="graphCanvas" height="400" width="600"></canvas><br>
-        <p>f(x) = <input type="text" id="userInput"></p>
-        <button id="drawGraph">Draw</button>
+        <p class="yFunctionText">f(x) = <input type="text" id="userInput"></p>
+        <div class="buttons">
+            <div id="drawGraph" class="drawGraph unselectable">
+                <img src="svg/compass.svg" alt="">
+                <p>Draw</p>
+            </div>
+            <div class="reloadGraph unselectable" id="reloadGraph">
+                <img src="svg/reload.svg" alt="">
+                <p>Reload</p>
+            </div>
+        </div>
     </div>
     
     <script src="js/userInput.js"></script>

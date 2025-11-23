@@ -1,5 +1,5 @@
 userInput.value = "";
-const functionStringMachine = generateRandomMathFunction();
+let functionStringMachine = generateRandomMathFunction();
 
 getFunctionCoordinates(functionStringMachine, xMachine, yMachine);
 drawCanvas();

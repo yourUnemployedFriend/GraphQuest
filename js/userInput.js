@@ -4,6 +4,11 @@ const buttonReloadGraph = document.getElementById("reloadGraph");
 const popup = document.getElementById("popup");
 const popupTitle = document.getElementById("popupTitle");
 const popupSubtitle = document.getElementById("popupSubtitle");
+const streakSpan = document.getElementById("streak");
+const pointsSpan = document.getElementById("points");
+
+let streak = 0;
+let points = 0;
 
 
 let USER_LINE_COLOR = USER_LINE_COLOR_DARK;
@@ -40,19 +45,30 @@ function drawUserFunction() {
     getFunctionCoordinates(userInput.value, xUser, yUser);
     drawFunction(xUser, yUser, USER_LINE_COLOR);
     if (comprobarLineas()) {
-        showPopup(true);
+        gotFunctionRight();
+        setTimeout(() => {
+            reloadGraph();
+        }, 500);
     } else {
         showPopup(false);
     }
+    updateScoreText();
 }
 
 buttonReloadGraph.addEventListener("click", function() {
+    reloadGraph();
+    resetFunctionPoints();
+    updateScoreText();
+})
+
+function reloadGraph() {
     xMachine = [];
     yMachine = [];
     functionStringMachine = generateRandomMathFunction();
     getFunctionCoordinates(functionStringMachine, xMachine, yMachine);
     drawCanvas();
-})
+    updateScoreText();
+}
 
 function showPopup(correct) {
 
@@ -74,4 +90,33 @@ function showPopup(correct) {
         popup.style.top = "-10%";
     }, 2000);
 
+}
+
+function gotFunctionRight() {
+    showPopup(true);
+    streak += 1;
+    points += 100;
+}
+
+function gotFunctionWrong() {
+    showPopup(false);
+    streak = 0;
+    if (points >= 100) {
+        points -= 100;
+    }
+}
+
+function resetFunctionPoints() {
+    streak = 0;
+    if (points >= 200) {
+        points -= 200;
+    } else {
+        points = 0;
+    }
+
+}
+
+function updateScoreText() {
+    streakSpan.innerText = streak;
+    pointsSpan.innerText = points;
 }

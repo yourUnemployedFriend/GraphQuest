@@ -22,7 +22,14 @@
         <h1>GraphQuest</h1>
         <h2>Try to guess the function :)</h2>
 
-        <canvas id="graphCanvas" height="400" width="600"></canvas><br>
+        <div class="canvasAndPoints">
+            <canvas id="graphCanvas" height="400" width="600"></canvas>
+            <div class="points">
+                <h1>Streak: <span id="streak">0</span></h1>
+                <h1>Points: <span id="points">0</span></h1>
+            </div>
+        </div>
+        <br>
         <p class="yFunctionText">f(x) = <input type="text" id="userInput"></p>
         <div class="buttons">
             <div id="drawGraph" class="drawGraph unselectable">
